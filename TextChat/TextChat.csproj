@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD6072C7-BEC6-4844-8B07-B06AC1B5C73E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TextChat</RootNamespace>
+    <AssemblyName>TextChat</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="EXILED">
+      <HintPath>..\lib\EXILED.dll</HintPath>
+    </Reference>
+    <Reference Include="EXILED_Events">
+      <HintPath>..\lib\EXILED_Events.dll</HintPath>
+    </Reference>
+    <Reference Include="EXILED_Permissions">
+      <HintPath>..\lib\EXILED_Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=5.0.5.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\lib\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\lib\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\lib\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\lib\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\Chat\Message.cs" />
+    <Compile Include="Collections\Chat\Room.cs" />
+    <Compile Include="Collections\Chat\Mute.cs" />
+    <Compile Include="Collections\Chat\Player.cs" />
+    <Compile Include="Commands\Console\Chat.cs" />
+    <Compile Include="Commands\Console\PublicChat.cs" />
+    <Compile Include="Commands\Console\PrivateChat.cs" />
+    <Compile Include="Commands\Console\TeamChat.cs" />
+    <Compile Include="Commands\Console\Help.cs" />
+    <Compile Include="Commands\RemoteAdmin\Mute.cs" />
+    <Compile Include="Commands\RemoteAdmin\Unmute.cs" />
+    <Compile Include="Configs.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Events\PlayerHandler.cs" />
+    <Compile Include="Events\RoundHandler.cs" />
+    <Compile Include="Extensions\ChatPlayer.cs" />
+    <Compile Include="Extensions\String.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="TextChat.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
