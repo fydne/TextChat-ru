@@ -25,7 +25,7 @@ namespace TextChat.Commands.Console
 			return (message, true);
 		}
 
-		protected void SendMessage(ref string message, Player sender, IEnumerable<ReferenceHub> targets)
+		protected void SendConsoleMessage(ref string message, Player sender, IEnumerable<ReferenceHub> targets)
 		{
 			targets.SendConsoleMessage(message = Configs.censorBadWords ? message.Sanitize(Configs.badWords, Configs.censorBadWordsChar) : message, color);
 

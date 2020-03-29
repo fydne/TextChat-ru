@@ -20,13 +20,13 @@ namespace TextChat.Events
 
 			if (ev.Player.gameObject == PlayerManager.localPlayer)
 			{
-				ev.ReturnMessage = "Вы не можете использовать консоль сервера!";
+				ev.ReturnMessage = "Вы не можете отправлять сообщения от сервера";
 				ev.Color = "red";
 
 				return;
 			}
 
-			(string commandName, string[] commandArguments) = ExtractCommand(ev.Command);
+			(string commandName, string[] commandArguments) = ev.Command.ExtractCommand();
 
 			if (!pluginInstance.ConsoleCommands.TryGetValue(commandName, out ICommand command)) return;
 
@@ -40,14 +40,14 @@ namespace TextChat.Events
 			catch (Exception exception)
 			{
 				Log.Error($"{commandName} command error: {exception}");
-				ev.ReturnMessage = "Произошла ошибка при выполнении команды!";
+				ev.ReturnMessage = "Произошла ошибка при выполнении команды!!";
 				ev.Color = "red";
 			}
 		}
 
 		public void OnRemoteAdminCommand(ref RACommandEvent ev)
 		{
-			(string commandName, string[] commandArguments) = ExtractCommand(ev.Command);
+			(string commandName, string[] commandArguments) = ev.Command.ExtractCommand();
 
 			if (!pluginInstance.RemoteAdminCommands.TryGetValue(commandName, out ICommand command)) return;
 
@@ -73,16 +73,14 @@ namespace TextChat.Events
 				Name = ev.Player.GetNickname()
 			});
 
-			ev.Player.SendMessage("Добро пожаловать в чат!", "green");
+			ev.Player.SendConsoleMessage($"Добро пожаловать в чат!", "green");
 		}
 
-		public void OnPlayerLeave(PlayerLeaveEvent ev) => ChatPlayers.Remove(ev.Player);
-
-		private (string commandName, string[] arguments) ExtractCommand(string commandLine)
+		public void OnPlayerLeave(PlayerLeaveEvent ev)
 		{
-			var extractedCommandArguments = commandLine.Split(' ');
+			Player.GetHubs().Where(player => player != ev.Player).SendConsoleMessage($"{ev.Player.GetNickname()} покинул чат!", "red");
 
-			return (extractedCommandArguments[0].ToLower(), extractedCommandArguments.Skip(1).ToArray());
+			ChatPlayers.Remove(ev.Player);
 		}
 	}
 }

@@ -46,7 +46,7 @@ namespace TextChat.Commands.RemoteAdmin
 				target.Broadcast(Configs.chatMutedBroadcastDuration, string.Format(Configs.chatMutedBroadcast, duration, reason), true);
 			}
 
-			target.SendMessage($"Вы были отключены от чата на {duration} минут{(duration != 1 ? "сек" : "")}! Причина: {reason}", "red");
+			target.SendConsoleMessage($"Вы были отключены от чата на {duration} минут{(duration != 1 ? "сек" : "")}! Причина: {reason}", "red");
 
 			return ($"{target.GetNickname()} был отключен в чате на {duration} минут{(duration != 1 ? "сек" : "")}, причина: {reason}", "green");
 		}

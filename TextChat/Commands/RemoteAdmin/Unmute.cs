@@ -30,7 +30,7 @@ namespace TextChat.Commands.RemoteAdmin
 
 			LiteDatabase.GetCollection<Collections.Chat.Mute>().Update(mutedPlayer);
 
-			target.SendMessage("Вы были размьючены в чате!", "green");
+			target.SendConsoleMessage("Вы были размьючены в чате!", "green");
 
 			return ($"{target.GetNickname()} был размьючен в чате", "green");
 		}

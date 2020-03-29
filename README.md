@@ -1,5 +1,5 @@
 # TextChat-ru
-[Ответлен от TextChat](https://github.com/iopietro/TextChat)
+[Ответлен от TextChat](https://github.com/iopietro/TextChat), но всё равно его пришлось переписать 
 
 Плагин TextChat для SCP: SL.
 

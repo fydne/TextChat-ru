@@ -35,7 +35,7 @@ namespace TextChat.Commands.Console
 
 			if (Configs.saveChatToDatabase) SaveMessage(message, ChatPlayers[sender], new List<Collections.Chat.Player>() { ChatPlayers[sender] }, type);
 
-			SendMessage(ref message, ChatPlayers[sender], new List<ReferenceHub>() { target });
+			target.SendConsoleMessage(message, color);
 
 			if (Configs.showPrivateMessageNotificationBroadcast)
 			{

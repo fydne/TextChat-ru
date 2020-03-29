@@ -34,7 +34,7 @@ namespace TextChat.Commands.Console
 
 			if (Configs.saveChatToDatabase) SaveMessage(message, ChatPlayers[sender], chatTargets, type);
 
-			SendMessage(ref message, ChatPlayers[sender], targets);
+			targets.SendConsoleMessage(message, color);
 
 			return (message, color);
 		}
