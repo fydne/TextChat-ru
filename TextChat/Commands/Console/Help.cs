@@ -19,7 +19,7 @@ namespace TextChat.Commands.Console
 
 			if (args.Length == 0)
 			{
-				StringBuilder commands = new StringBuilder($"\n\n[СПИСОК КОМАНД: ({pluginInstance.ConsoleCommands.Count})]\n by fydne");
+				StringBuilder commands = new StringBuilder($"\n\n[СПИСОК КОМАНД: ({pluginInstance.ConsoleCommands.Count})]");
 
 				foreach (ICommand command in pluginInstance.ConsoleCommands.Values)
 				{

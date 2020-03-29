@@ -20,7 +20,7 @@ namespace TextChat.Events
 
 			if (ev.Player.gameObject == PlayerManager.localPlayer)
 			{
-				ev.ReturnMessage = "Вы не можете отправлять сообщения от сервера";
+				ev.ReturnMessage = "Вы не можете отправлять сообщения от сервера!";
 				ev.Color = "red";
 
 				return;
@@ -40,7 +40,7 @@ namespace TextChat.Events
 			catch (Exception exception)
 			{
 				Log.Error($"{commandName} command error: {exception}");
-				ev.ReturnMessage = "Произошла ошибка при выполнении команды!!";
+				ev.ReturnMessage = "Произошла ошибка при выполнении команды!";
 				ev.Color = "red";
 			}
 		}
@@ -73,12 +73,12 @@ namespace TextChat.Events
 				Name = ev.Player.GetNickname()
 			});
 
-			ev.Player.SendConsoleMessage($"Добро пожаловать в чат!", "green");
+			ev.Player.SendConsoleMessage("Добро пожаловать в чат!", "green");
 		}
 
 		public void OnPlayerLeave(PlayerLeaveEvent ev)
 		{
-			Player.GetHubs().Where(player => player != ev.Player).SendConsoleMessage($"{ev.Player.GetNickname()} покинул чат!", "red");
+			Player.GetHubs().Where(player => player != ev.Player).SendConsoleMessage($"{ev.Player.GetNickname()} покинул(а) чат!", "red");
 
 			ChatPlayers.Remove(ev.Player);
 		}

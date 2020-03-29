@@ -7,24 +7,11 @@ namespace TextChat.Extensions
 {
 	public static class ChatPlayer
 	{
-		public static void SendConsoleMessage(this ReferenceHub player, string message, string color)
+		public static void SendConsoleMessage(this IEnumerable<ReferenceHub> targets, string message, string color)
 		{
-			((CharacterClassManager)player.characterClassManager).TargetConsolePrint(((Mirror.NetworkBehaviour)player.scp079PlayerScript).connectionToClient, message, color);
-		}
-
-		public static void SendConsoleMessage(
-		  this IEnumerable<ReferenceHub> targets,
-		  string message,
-		  string color)
-		{
-			using (IEnumerator<ReferenceHub> enumerator = targets.GetEnumerator())
+			foreach (ReferenceHub target in targets)
 			{
-				while (((System.Collections.IEnumerator)enumerator).MoveNext())
-				{
-					ReferenceHub current = enumerator.Current;
-					if ((UnityEngine.Object)current != (UnityEngine.Object)null)
-						current.SendConsoleMessage(message, color);
-				}
+				if (target != null) target.SendConsoleMessage(message, color);
 			}
 		}
 
